@@ -1,0 +1,49 @@
+/*对div定义样式*/
+.one{
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.two{
+    text-align: center;
+}
+.three{
+    width: 16.6%;
+    float: left;
+    color: coral;
+    font-family: 新宋体;
+    font-size: 17px;
+    font-weight: 900;
+}
+/*textarea样式定义*/
+#text{
+    font-size: 15px;
+    font-family: 微软雅黑;
+}
+/*定义font标签样式*/
+font{
+    color: deeppink;
+    font-size: 100px;
+    font-style: oblique;
+}
+/*定义背景色*/
+body{
+    background-color: cyan;
+}
+/*定义button标签的样式*/
+button{
+    width: 200px;
+    height: 30px;
+    background-color: chartreuse;
+    color: blue;
+    font-family: 华文楷体;
+    font-size: 20px;
+    font-style: oblique;
+}
+/*定义ul、li的样式*/
+ul li{
+    list-style-type: square;
+}
+ul li li{
+    list-style-type: decimal;
+}

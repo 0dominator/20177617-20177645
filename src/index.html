@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet">
+    <title>家族树创建</title>
+</head>
+<body>
+<div class="one">
+    <font><p><b>家族树</b></p></font>
+    <textarea cols="70" id="text" rows="15" placeholder="请输入内容"></textarea><br>
+    <button onclick="f1()">创建</button>
+    <button id="show0">清空</button>
+    <button onclick="location.reload()">刷新</button>
+</div>
+<div class="two">
+    <button id="show1">无家族树</button>
+</div>
+<div class="three" id="text1"></div>
+<div class="three" id="text2"></div>
+<div class="three" id="text3"></div>
+<script>
+    //s1、s2作为id的值
+    var s1=1000;
+    var s2=9999;
+    function f1() {
+        //获取文本数据
+        var a=document.querySelector("textarea");
+        //判断数据是否为空
+        if(a.value==""){
+            alert("输入不能为空！");
+        }
+        if(s1==1000){
+            document.getElementById("show1").innerHTML="一键全收缩";
+        }
+        //对于多组输入以”\n\n“切割
+        var aa=a.value.split("\n\n");
+        for(var i=0;i<aa.length;i++){
+            var uli=document.createElement("ul");
+            uli.id=s2.toString();
+            //将ul按规律加入到规划好的div中
+            switch (s2%3) {
+                case 0:{
+                    document.getElementById("text1").appendChild(uli);
+                } break;
+                case 1:{
+                    document.getElementById("text2").appendChild(uli);
+                } break;
+                case 2:{
+                    document.getElementById("text3").appendChild(uli);
+                } break;
+            }
+            //对于每组数据以”\n“切割
+            var b=aa[i].split("\n");
+            for(var j=0;j<b.length;j++){
+                if(j==0){
+                    document.getElementById(s2.toString()).innerHTML=b[j];
+                    continue;
+                }else{
+                    var c0 = b[j].split("：")[0];
+                    var c1 = b[j].split("：")[1];
+                    var d = c1.split("、");
+                    var li = document.createElement("li");
+                    var ul = document.getElementById(s2.toString());
+                    var div = document.createElement("div");
+                    ul.appendChild(li);
+                    li.appendChild(div);
+                    li.innerHTML = c0;
+                    var ul = document.createElement("ul");
+                    //将s1赋给ul的id，然后自减
+                    ul.id=s1.toString();
+                    s1--;
+                    li.appendChild(ul);
+                    for (var k = 0; k < d.length; k++) {
+                        var li = document.createElement("li");
+                        ul.appendChild(li);
+                        li.innerHTML = d[k];
+                    }
+                }
+            }
+            s2++;
+        }
+    }
+    //收缩、展开事件，点击button对ul进行收缩和展开
+    document.getElementById("show1").onclick = function () {
+        if (this.innerHTML == '一键全收缩') {
+            this.innerHTML = '一键全展开';
+            for (var i=1000;i>=s1;i--) {
+                var con = document.getElementById(i.toString()).style;
+                con.display = 'none';
+            }
+            return false;
+        }else {
+            this.innerHTML = '一键全收缩';
+            for (var i=1000;i>=s1;i--) {
+                var con = document.getElementById(i.toString()).style;
+                con.display = '';
+            }
+            return false;
+        }
+    }
+    //清空文本数据事件
+    document.getElementById("show0").onclick = function (){
+        document.getElementById("text").innerHTML="";
+    }
+</script>
+</body>
+</html>
